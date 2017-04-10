@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>PHP 基础学习</title>
-</head>
-<body>
-  
 <?php
   //> 开始学习php
   $start = '开始学习php！';
@@ -26,7 +18,30 @@
   var_dump($floatNum);
 
   //> 读取文本
-  $file = fopen('../sample.txt', 'r');
+  $fliePath = 'sample.txt';
+  $file = fopen('sample.txt', 'r');
+
+  // 判断是否存在该文件
+  if (is_file($fliePath)) {
+    echo '所有者：' . fileowner($fliePath) . '<br>';
+    echo '创建时间：' . filectime($fliePath) . '<br>';
+    echo '修改时间：' . filemtime($fliePath) . '<br>';
+    echo '最后访问时间：' . fileatime($fliePath) . '<br>';
+
+    // 给$mtime赋值为文件的修改时间
+    $mtime = time(); 
+    // 通过计算时间差 来判断文件内容是否有效
+    if (time() - $mtime > 3600) {
+      echo '<br>缓存已过期';
+    } else {
+      echo '[通过计算时间差 来判断文件内容是否有效]' . file_get_contents($fliePath) . '<br/>';
+    }
+    echo is_writeable($fliePath) ? '该文件允许写入' : '该文本禁止写入';
+  } else {
+    echo '该文件不存在！';
+  }
+
+
   if ($file) {
     // 判断是否到最后一行
     while (!feof($file)) { 
@@ -36,6 +51,7 @@
       echo "<br />";
     }
   }
+
   // 关闭文件
   fclose($file);
 
@@ -213,7 +229,7 @@
 
   $longStr = <<<EOF
   
-  1.以 <<< End开始标记开始，以End结束标记结束，结束标记必须顶头写，不能有缩进和空格，且在结束标记末尾要有分号 。开始标记和开始标记相同，比如常用大写的EOT、EOD、EOF来表示，但是不只限于那几个，只要保证开始标记和结束标记不在正文中出现即可。
+  1.以 <<< End开始标记开始，以End结束标记结束，结束标记必须顶头写，不能有缩进和空格，且在结束标记末尾要有分号 。开始标记和开始标记相同，比如常用大写的EOT、EOD、EOF来表示，但是不只限于那几个，只要保证开始标记和结束标记不在正文中出现即可 what's this?。
 
 EOF;
 
@@ -221,8 +237,36 @@ EOF;
 
   echo "str is $longStr";
 
+  //> 获取字符串长度
+  echo '获取普通字符串长度：' . strlen($longStr);
+  echo '获取中文字符串长度：' . mb_strlen($longStr);
+
+  //> 英文字符串截取
+  echo '<br/>' . substr($longStr, 2, 8);
+  //> 中文字符串截取
+  echo '<br/>' . mb_substr($longStr, 2, 8, 'utf8');
+  //> 查找字符串
+  echo '<br/>' . strpos($longStr, '标记');
+
+  //> 格式化字符串
+  $numStr = '12.45678';
+  echo '<br/>' . sprintf('%0.3f', $numStr);
+  // 总长度为8，小数点占3位
+  echo '<br/>' . sprintf('%08.3f', $numStr);
+
+  //> 字符串合并
+  echo '<br/>' . implode('&&', $students[2010]);
+
+  //> 字符串转义
+  echo '<br/>' . addslashes($longStr);
+
+  //> 正则表达式
+  echo '<br/>' . (preg_match('/http/i', 'Http://www.imooc.com/') ? '匹配' : '不匹配');
+  // 贪婪模式（尽可能多地匹配）
+  preg_match('/\d+\-\d+/', '我的电话是010-12345678', $match1);
+  echo '<br/>' . count($match1) . '&&' . $match1[0];
+  // 懒惰模式（尽可能少匹配）
+  preg_match('/\d?\-\d?/', '我的电话是010-12345678', $match2);
+  echo '<br/>' . count($match2) . '&&' . $match2[0];
 
 ?>
-
-</body>
-</html>
