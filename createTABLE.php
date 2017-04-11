@@ -21,6 +21,12 @@
   reg_date TIMESTAMP
   )';
 
+  // NOT NULL - 每一行都必须含有值（不能为空），null 值是不允许的。
+  // DEFAULT value - 设置默认值
+  // UNSIGNED - 使用无符号数值类型，0 及正数
+  // AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1
+  // PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置为 ID 数值，与 AUTO_INCREMENT 一起使用。
+
   if ($conn -> query($sql) === TRUE) {
     echo 'Table MyGuests created successfully';
   } else {
