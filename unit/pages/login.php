@@ -36,6 +36,9 @@
         'verifycode': verifycode
       }, function(data, status) {
         console.log(data)
+        if (data.rescode == '100') {
+          setCode()
+        } 
       })
       .done(function() {
         alert('success');
@@ -43,9 +46,9 @@
       .fail(function() {
         alert('error');
       })
-      .always(function() {
-        console.log('finished');
-      });
+      // .always(function() {
+      //   console.log('finished');
+      // });
     } else {
       alert('请正确输入表单！')
     }
