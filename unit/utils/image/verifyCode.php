@@ -162,15 +162,15 @@ class securityCoder {
   public static function check($code) {  
     isset($_SESSION) || session_start();  
     // 验证码不能为空  
-    if (emptyempty($code) || emptyempty($_SESSION[self::$seKey])) {  
-      return false;  
+    if (empty($code) || empty($_SESSION[self::$seKey])) {  
+      return false; 
     }  
     // session 过期  
     if (time() - $_SESSION[self::$seKey]['time'] > self::$expire) {  
       unset($_SESSION[self::$seKey]);  
       return false;  
     }
-    if ($code == $_SESSION[self::$seKey]['code']) {  
+    if (strtolower($code) == strtolower($_SESSION[self::$seKey]['code'])) {  
       return true;  
     }  
     return false;

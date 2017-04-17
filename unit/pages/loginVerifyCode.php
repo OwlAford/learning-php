@@ -4,5 +4,5 @@
   securityCoder::$useNoise = false;
   securityCoder::$useCurve = true; 
   securityCoder::$fontSize = 18; 
-  securityCoder::entry(); 
+  securityCoder::entry();
 ?>
