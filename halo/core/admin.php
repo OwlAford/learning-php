@@ -16,4 +16,12 @@
     return $row;
   }
 
+  /**
+   * 添加管理员
+   * @return string
+   */
+  function addUser() {
+    
+  }
+
 ?>

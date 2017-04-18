@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户登录</title>
+<link rel="stylesheet" href="css/global.css">
+</head>
+
+<body>
+  <div class="form">
+    <table>
+      <tbody>
+        <tr>
+          <td align="right">用户名：</td>
+          <td><input type="text" name="username" id="username" placeholder="请输入用户名"></td>
+        </tr>
+        <tr>
+          <td align="right">密码：</td>
+          <td><input type="password" name="password" id="password" placeholder="请输入密码"></td>
+        </tr>
+        <tr>
+          <td align="right">验证码：</td>
+          <td>
+            <input type="text" name="verifycode" id="verifycode" placeholder="请输入验证码">
+            <img alt="验证码" class="codeImg" id="codeImg" onclick="setCode()" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="button" class="btn" value="登录" onclick="login()"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  function setCode() {
+    $('#codeImg').attr('src', '../actions/loginVerifyCode.php?' + Date.now())
+  }
+  setCode()
+  function login() {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var verifycode = $('#verifycode').val();
+    if (username && password && verifycode) {
+      $.post('../actions/doLogin.php', {
+        'username': username,
+        'password': password,
+        'verifycode': verifycode
+      }, function(data, status) {
+        console.log(data)
+        if (data.rescode == '100') {
+          setCode()
+        } 
+      })
+      .done(function() {
+        alert('success');
+      })
+      .fail(function() {
+        alert('error');
+      })
+      // .always(function() {
+      //   console.log('finished');
+      // });
+    } else {
+      alert('请正确输入表单！')
+    }
+  }
+  </script>
+</body>
+</html>

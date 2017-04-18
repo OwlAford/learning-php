@@ -1,0 +1,105 @@
+﻿/*
+ *     CARBON GLOBAL STYLES
+ *    	@Author zhangyh  
+ *     Create in 2016.09.29
+ *
+ */
+body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,header,hgroup,nav,section,article,aside,footer,figure,figcaption,menu,button {
+  margin:0;
+  padding:0;
+  outline:0
+}
+body {
+  font: 14px/1.5 "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  color:#333;
+  min-width: 1226px;
+  background-color: #f3f5f7;  
+  transition: background-color .6s;
+  -webkit-text-size-adjust:none;
+  -webkit-tap-highlight-color:rgba(255,255,255,0)
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size:inherit;
+  font-weight:normal
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0
+}
+fieldset,img {
+  border:0
+}
+
+input,button,textarea,select {
+  font-family:inherit;
+  font-size:inherit;
+  font-weight:inherit;
+  border:0;
+  background:0;
+  -webkit-appearance:none;
+  outline:0
+}
+a,button,input,select,textarea,a:focus,button:focus,input:focus,select:focus,textarea:focus,[onclick] {
+  outline:0;
+  -webkit-tap-highlight-color:rgba(255,255,255,0)
+}
+a {
+  -webkit-touch-callout:none;
+  text-decoration:none;
+  color:#00a5e0;
+  outline:0
+}
+em,i,b {
+  font-style:normal;
+  font-weight:normal;
+}
+::-webkit-input-placeholder {
+  color:#bbb
+}
+
+.form {
+  width: 800px;
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.form input[type=text],
+.form input[type=password] {
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+  width: 300px;
+}
+
+.form input[type=text]:focus,
+.form input[type=password]:focus {
+  background-color: #eaeaea;
+}
+
+.form .codeImg {
+  display: inline-block;
+  vertical-align: middle;
+  height: 48px;
+  margin-left: 10px;
+}
+
+.form .btn {
+  min-width: 300px;
+  background-color: #0094e8;
+  color: #fff;
+  display: block;
+  padding: 15px 20px;
+  margin: 30px auto 0;
+  font-size: 16px;
+}
+
+.form .btn:hover {
+  background-color: #0077bb;
+}
+
+table {
+  width: 100%;
+}
+table td {
+  padding: 10px;
+}

@@ -1,7 +1,6 @@
 <?php 
   require_once '../config.php';
   require_once UTILPATH . 'image/verifyCode.php';
-  require_once LIBPATH . 'mysql.php';
   require_once COREPATH . 'admin.php';
 
   $username = $_POST['username'];
@@ -21,12 +20,7 @@
         'rescode' => '100'
       );
     } else {
-      $res = array(
-        'response' => '表单验证成功！',
-        'rescode' => '102'
-      );
       // 用户校验
-      
       if (checkAdmin($username, $password)) {
         $res = array(
           'response' => '用户校验成功！',
