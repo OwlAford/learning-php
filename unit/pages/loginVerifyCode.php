@@ -1,6 +1,6 @@
 <?php
   require_once '../config.php';
-  require_once ROOTPATH . '/utils/image/verifyCode.php';
+  require_once UTILPATH . 'image/verifyCode.php';
   securityCoder::$useNoise = false;
   securityCoder::$useCurve = true; 
   securityCoder::$fontSize = 18; 

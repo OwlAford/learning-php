@@ -1,6 +1,9 @@
 <?php 
   require_once '../config.php';
-  require_once ROOTPATH . '/utils/image/verifyCode.php';
+  require_once UTILPATH . 'image/verifyCode.php';
+  require_once LIBPATH . 'mysql.php';
+  require_once COREPATH . 'admin.php';
+
   $username = $_POST['username'];
   $username = addslashes($username);
   $password = md5($_POST['password']);
@@ -22,6 +25,19 @@
         'response' => '表单验证成功！',
         'rescode' => '102'
       );
+      // 用户校验
+      
+      if (checkAdmin($username, $password)) {
+        $res = array(
+          'response' => '用户校验成功！',
+          'rescode' => '104'
+        );
+      } else {
+        $res = array(
+          'response' => '用户校验失败！',
+          'rescode' => '105'
+        );
+      }
     }
   }
   header('Content-Type:application/json;charset=utf-8');
