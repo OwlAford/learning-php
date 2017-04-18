@@ -12,25 +12,28 @@
       'rescode' => '103'
     );
   } else {
-    // 验证验证码
-    if (!securityCoder::check($verifyCode)) { 
-      $res = array(
-        'response' => '验证码无效！',
-        'rescode' => '100'
-      );
-    } else {
-      // 用户添加
-      if (addUser($username, $password)) {
+    // 用户添加
+    $inserAdmin = addUser($username, $password);
+    if ($inserAdmin) {
+      if ($inserAdmin == 'exist') {
         $res = array(
-          'response' => '用户添加成功！',
-          'rescode' => '104'
-        );
+        'response' => '用户已存在！',
+        'rescode' => '105',
+        'insertId' => ''
+      );
       } else {
         $res = array(
-          'response' => '用户添加失败！',
-          'rescode' => '105'
+          'response' => '用户添加成功！',
+          'rescode' => '104',
+          'insertId' => $inserAdmin
         );
       }
+    } else {
+      $res = array(
+        'response' => '用户添加失败！',
+        'rescode' => '105',
+        'insertId' => ''
+      );
     }
   }
   header('Content-Type:application/json;charset=utf-8');

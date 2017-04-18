@@ -1,16 +1,16 @@
 <?php
   require_once '../config.php';
-
+  date_default_timezone_set('Asia/Shanghai');
   /**
    * 连接数据库
    * @return resource
    */
   function connect() {
     // 创建连接
-    $conn = new mysqli(HOST, USERNAME, PASSWORD, DBNAME);
+    $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DBNAME);
     // 检测连接
-    if ($conn -> connect_error) {
-      die('连接失败: ' . $conn -> connect_error);
+    if (mysqli_connect_errno($conn)) {
+      die('连接 MySQL 失败: ' . mysqli_connect_error());
     }
     // 字符集
     $conn -> query('set names utf8');

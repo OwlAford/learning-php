@@ -23,7 +23,7 @@
           <td><input type="password" name="passwordAgn" id="passwordAgn" placeholder="请再次输入密码"></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="button" class="btn" value="登录" onclick="login()"></td>
+          <td colspan="2"><input type="button" class="btn" value="注册" onclick="login()"></td>
         </tr>
       </tbody>
     </table>
@@ -45,12 +45,9 @@
           'password': password
         }, function(data, status) {
           console.log(data)
-          if (data.rescode == '100') {
-            setCode()
+          if (data.rescode == '105') {
+            alert(data.response)
           }
-        })
-        .done(function() {
-          alert('success');
         })
         .fail(function() {
           alert('error');
